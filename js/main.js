@@ -13,6 +13,13 @@ $form.addEventListener('submit', function (event) {
   data.profile.fullName = $form.elements.fullName.value;
   data.profile.location = $form.elements.location.value;
   data.profile.bio = $form.elements.bio.value;
+  var inputData = JSON.stringify(data);
+  localStorage.setItem('profile', inputData);
   $form.reset();
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 });
+
+/* window.addEventListener('beforeunload', function (event) {
+  var inputData = JSON.stringify(data);
+  localStorage.setItem('profile', inputData);
+}); */

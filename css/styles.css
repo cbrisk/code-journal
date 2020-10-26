@@ -19,16 +19,16 @@ textarea,
 input {
   width: 100%;
   border: 3px solid black;
-}
-
-input {
-  height: 40px;
   font-family: inherit;
 }
 
 label,
 input {
   margin: 8px 0;
+}
+
+input {
+  height: 40px;
 }
 
 button {
