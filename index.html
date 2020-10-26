@@ -15,11 +15,65 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-    <div data-view="edit-profile"></div>
-  </main>
+  <div class="container">
+    <header class="column-full">
+      <h3>Code Journal</h3>
+    </header>
+    <main>
+      <div class="column-full">
+        <h1>Create Profile</h1>
+      </div>
+      <form>
+        <div class="row">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="Placeholder Image">
+          </div>
+          <div class="column-half flex-form">
+            <div>
+              <label for="avatar-url">Avatar URL</label>
+            </div>
+            <div>
+              <input required name="avatar-url" type="text" id="avatar-url">
+            </div>
+            <div>
+              <label for="user-name">Username</label>
+            </div>
+            <div>
+              <input required name="user-name" type="text" id="user-name">
+            </div>
+            <div>
+              <label for="full-name">Full Name</label>
+            </div>
+            <div>
+              <input required name="full-name" type="text" id="full-name">
+            </div>
+            <div>
+              <label for="location">Location</label>
+            </div>
+            <div>
+              <input required name="location" type="text" id="location">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <div class="padding">
+              <label for="bio">Bio</label>
+            </div>
+            <div>
+              <textarea required rows="5" name="bio" id="bio"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full flex-button">
+            <button type="submit">Save</button>
+          </div>
+        </div>
+      </form>
+      <div data-view="edit-profile"></div>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
