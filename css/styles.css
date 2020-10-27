@@ -1,0 +1,60 @@
+body {
+  font-family: 'Overpass', sans-serif;
+}
+
+header {
+  width: 100%;
+  background-color: #9c1c20;
+}
+
+h3 {
+  color: white;
+  margin: 0 auto;
+  padding: 18px 0;
+  font-size: 22px;
+}
+
+img,
+textarea,
+input {
+  width: 100%;
+  border: 3px solid black;
+  font-family: inherit;
+}
+
+label,
+input {
+  margin: 8px 0;
+}
+
+input {
+  height: 40px;
+}
+
+button {
+  padding: 8px 12px;
+  margin: 8px 0;
+  background-color: #9c1c20;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.flex-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.flex-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.padding {
+  padding: 8px 0;
+}
