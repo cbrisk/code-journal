@@ -117,3 +117,14 @@ function viewSwapping(dataView) {
   }
   data.view = dataView;
 }
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  var profileStorage = localStorage.getItem('profile');
+  profileStorage = JSON.parse(profileStorage);
+  data = profileStorage;
+  if (profileStorage.profile.username === '') {
+    viewSwapping('edit-profile');
+  } else {
+    viewSwapping('profile');
+  }
+});
