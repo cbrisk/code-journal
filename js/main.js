@@ -31,11 +31,11 @@ function profileRender(data) {
     </div>
     <div class="row">
       <div class="column-half">
-        <img class="image-one" src=data.profile.avatarUrl alt="Avatar Image">
+        <i class="fas fa-user"></i>
       </div>
       <div class="column-half">
         <div class="flex">
-          <img class="image-two" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTlx1OjBPG6fKXrDWNxQuIuCq5cI9qxT7goMA&usqp=CAU" alt="Profile icon">
+          <i class="fas fa-user"></i>
           <h4>data.profile.username</h4>
         </div>
         <div class="flex">
@@ -69,27 +69,23 @@ function profileRender(data) {
   $divHalf2.setAttribute('class', 'column-half');
   var $flex = document.createElement('div');
   $flex.setAttribute('class', 'flex');
-  var $img2 = document.createElement('img');
-  $img2.setAttribute('class', 'image-two');
-  $img2.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTlx1OjBPG6fKXrDWNxQuIuCq5cI9qxT7goMA&usqp=CAU');
-  $img2.setAttribute('alt', 'Profile icon');
+  var $icon1 = document.createElement('i');
+  $icon1.setAttribute('class', 'fas fa-user');
   var $h4one = document.createElement('h4');
   $h4one.textContent = data.profile.username;
 
-  $flex.appendChild($img2);
+  $flex.appendChild($icon1);
   $flex.appendChild($h4one);
   $divHalf2.appendChild($flex);
 
   var $flex2 = document.createElement('div');
   $flex2.setAttribute('class', 'flex');
-  var $img3 = document.createElement('img');
-  $img3.setAttribute('class', 'image-two');
-  $img3.setAttribute('src', 'https://www.clipartkey.com/mpngs/m/179-1791285_little-location-icon.png');
-  $img2.setAttribute('alt', 'Location icon');
+  var $icon2 = document.createElement('i');
+  $icon2.setAttribute('class', 'fas fa-map-marker-alt');
   var $h4two = document.createElement('h4');
   $h4two.textContent = data.profile.location;
 
-  $flex2.appendChild($img3);
+  $flex2.appendChild($icon2);
   $flex2.appendChild($h4two);
   $divHalf2.appendChild($flex2);
 
