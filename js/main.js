@@ -1,6 +1,7 @@
 var $form = document.querySelector('form');
 var $inputAvatar = document.querySelector('#avatar-url');
 var $image = document.querySelector('img');
+var $views = document.querySelectorAll('div.view');
 
 $inputAvatar.addEventListener('input', function (event) {
   $image.setAttribute('src', event.target.value);
@@ -15,6 +16,7 @@ $form.addEventListener('submit', function (event) {
   data.profile.bio = $form.elements.bio.value;
   $form.reset();
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+  viewSwapping('profile');
 });
 
 window.addEventListener('beforeunload', function (event) {
@@ -22,9 +24,8 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('profile', inputData);
 });
 
-/* $views = document.querySelectorAll('.view');
-function profileRender() {
-//<div>
+function profileRender(data) {
+/* <div>
     <div class="column-full">
       <h1>data.profile.fullName</h1>
     </div>
@@ -44,7 +45,7 @@ function profileRender() {
         <p>data.profile.bio</p>
       </div>
     </div>
-  </div>//
+  </div> */
   var $container = document.createElement('div');
   var $divFull = document.createElement('div');
   $divFull.setAttribute('class', 'column-full');
@@ -100,4 +101,19 @@ function profileRender() {
   $container.appendChild($row);
 
   return $container;
-} */
+}
+
+function viewSwapping(dataView) {
+  for (var j = 0; j < $views.length; j++) {
+    if ($views[j].getAttribute('data-view') === dataView) {
+      $views[j].classList.remove('hidden');
+    } else {
+      $views[j].classList.add('hidden');
+    }
+    if (dataView === 'profile') {
+      $views[j].innerHTML = '';
+      $views[j].appendChild(profileRender(data));
+    }
+  }
+  data.view = dataView;
+}
