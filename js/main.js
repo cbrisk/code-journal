@@ -43,6 +43,7 @@ function profileRender(data) {
           <h4>data.profile.location</h4>
         </div>
         <p>data.profile.bio</p>
+        <a href="#" data-view="edit-profile"><button type="submit">Edit</button></a>
       </div>
     </div>
   </div> */
@@ -91,8 +92,17 @@ function profileRender(data) {
 
   var $para = document.createElement('p');
   $para.textContent = data.profile.bio;
-
   $divHalf2.appendChild($para);
+
+  var $edit = document.createElement('a');
+  $edit.setAttribute('href', '#');
+  $edit.setAttribute('dataview', 'edit-profile');
+  var $editButton = document.createElement('button');
+  $editButton.setAttribute('type', 'submit');
+  $editButton.textContent = 'Edit';
+  $edit.appendChild($editButton);
+  $divHalf2.appendChild($edit);
+
   $row.appendChild($divHalf2);
   $container.appendChild($row);
 
@@ -109,6 +119,12 @@ function viewSwapping(dataView) {
     if (dataView === 'profile') {
       $views[j].innerHTML = '';
       $views[j].appendChild(profileRender(data));
+    } else {
+      $form.elements.avatarUrl.value = data.profile.avatarUrl;
+      $form.elements.username.value = data.profile.username;
+      $form.elements.fullName.value = data.profile.fullName;
+      $form.elements.location.value = data.profile.location;
+      $form.elements.bio.value = data.profile.bio;
     }
   }
   data.view = dataView;
@@ -123,4 +139,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
   } else {
     viewSwapping('profile');
   }
+});
+
+document.addEventListener('click', function (event) {
+  if (event.target.matches('button') === false) {
+    return;
+  }
+  viewSwapping('edit-profile');
 });
