@@ -21,3 +21,5 @@ window.addEventListener('beforeunload', function (event) {
   var inputData = JSON.stringify(data);
   localStorage.setItem('profile', inputData);
 });
+
+// $views = document.querySelectorAll('.view');

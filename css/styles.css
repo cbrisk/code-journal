@@ -14,7 +14,7 @@ h3 {
   font-size: 22px;
 }
 
-img,
+img.image-one,
 textarea,
 input {
   width: 100%;
@@ -44,6 +44,10 @@ button:hover {
   cursor: pointer;
 }
 
+.flex {
+  display: flex;
+}
+
 .flex-form {
   display: flex;
   flex-direction: column;
@@ -57,4 +61,10 @@ button:hover {
 
 .padding {
   padding: 8px 0;
+}
+
+.image-two {
+  max-width: 8%;
+  object-fit: contain;
+  margin-right: 20px;
 }
