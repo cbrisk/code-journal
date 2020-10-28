@@ -5,11 +5,13 @@ body {
 header {
   width: 100%;
   background-color: #9c1c20;
+  display: flex;
 }
 
-h3 {
+h3,
+a.link {
   color: white;
-  margin: 0 auto;
+  margin: 0 18px;
   padding: 18px 0;
   font-size: 22px;
 }
@@ -35,16 +37,27 @@ i {
   margin-right: 14px;
 }
 
-button {
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+p {
+  margin-bottom: 24px;
+}
+
+button,
+a.edit {
   padding: 8px 12px;
-  margin: 8px 0;
+  margin: 12px 0;
   background-color: #9c1c20;
   color: white;
   border: none;
   border-radius: 5px;
 }
 
-button:hover {
+button:hover,
+a.edit:hover {
   cursor: pointer;
 }
 

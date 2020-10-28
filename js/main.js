@@ -43,6 +43,7 @@ function profileRender(data) {
           <h4>data.profile.location</h4>
         </div>
         <p>data.profile.bio</p>
+        <a href="#" data-view="edit-profile"><button type="submit">Edit</button></a>
       </div>
     </div>
   </div> */
@@ -91,8 +92,15 @@ function profileRender(data) {
 
   var $para = document.createElement('p');
   $para.textContent = data.profile.bio;
-
   $divHalf2.appendChild($para);
+
+  var $edit = document.createElement('a');
+  $edit.setAttribute('href', '#');
+  $edit.setAttribute('dataview', 'edit-profile');
+  $edit.className = 'edit';
+  $edit.textContent = 'Edit';
+  $divHalf2.appendChild($edit);
+
   $row.appendChild($divHalf2);
   $container.appendChild($row);
 
@@ -106,10 +114,17 @@ function viewSwapping(dataView) {
     } else {
       $views[j].classList.add('hidden');
     }
-    if (dataView === 'profile') {
-      $views[j].innerHTML = '';
-      $views[j].appendChild(profileRender(data));
-    }
+  }
+  if (dataView === 'profile') {
+    $views[1].innerHTML = '';
+    $views[1].appendChild(profileRender(data));
+  } else {
+    $form.elements.avatarUrl.value = data.profile.avatarUrl;
+    $form.elements.username.value = data.profile.username;
+    $form.elements.fullName.value = data.profile.fullName;
+    $form.elements.location.value = data.profile.location;
+    $form.elements.bio.value = data.profile.bio;
+    $image.setAttribute('src', $form.elements.avatarUrl.value);
   }
   data.view = dataView;
 }
@@ -117,10 +132,23 @@ function viewSwapping(dataView) {
 document.addEventListener('DOMContentLoaded', function (event) {
   var profileStorage = localStorage.getItem('profile');
   profileStorage = JSON.parse(profileStorage);
-  data = profileStorage;
-  if (profileStorage.profile.username === '') {
+  if (profileStorage !== null) {
+    data = profileStorage;
+  }
+  if (data.profile.username === '') {
     viewSwapping('edit-profile');
   } else {
+    viewSwapping('profile');
+  }
+});
+
+document.addEventListener('click', function (event) {
+  if (event.target.tagName !== 'A') {
+    return;
+  }
+  if (event.target.matches('a.edit')) {
+    viewSwapping('edit-profile');
+  } else if (event.target.matches('a.link') && data.profile.username !== '') {
     viewSwapping('profile');
   }
 });
