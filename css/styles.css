@@ -74,6 +74,12 @@ a.new:hover {
   justify-content: space-evenly;
 }
 
+.flex-entry-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .flex-button {
   display: flex;
   justify-content: flex-end;

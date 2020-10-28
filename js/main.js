@@ -1,6 +1,6 @@
-var $form = document.querySelector('form');
+var $form = document.querySelector('form.one');
 var $inputAvatar = document.querySelector('#avatar-url');
-var $image = document.querySelector('img');
+var $image = document.querySelector('img.profile');
 var $views = document.querySelectorAll('div.view');
 
 $inputAvatar.addEventListener('input', function (event) {
@@ -152,5 +152,27 @@ document.addEventListener('click', function (event) {
     viewSwapping('profile');
   } else if (event.target.matches('a.link.entry') && data.profile.username !== '') {
     viewSwapping('entries');
+  } else if (event.target.matches('a.new')) {
+    viewSwapping('create-entry');
   }
+});
+
+var $formEntry = document.querySelector('form.two');
+var $imageUrl = document.querySelector('#image-url');
+var $entryImage = document.querySelector('img.entry');
+
+$imageUrl.addEventListener('input', function (event) {
+  $entryImage.setAttribute('src', event.target.value);
+});
+
+$formEntry.addEventListener('submit', function (event) {
+  event.preventDefault();
+  data.entries.push({
+    imageUrl: $formEntry.elements.imageUrl.value,
+    title: $formEntry.elements.title.value,
+    notes: $formEntry.elements.notes.value
+  });
+  $formEntry.reset();
+  $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  viewSwapping('entries');
 });

@@ -26,10 +26,10 @@
         <div class="column-full">
           <h1>Edit Profile</h1>
         </div>
-        <form>
+        <form class="one">
           <div class="row">
             <div class="column-half">
-              <img class="image-one" src="images/placeholder-image-square.jpg" alt="Placeholder Image">
+              <img class="image-one profile" src="images/placeholder-image-square.jpg" alt="Placeholder Image">
             </div>
             <div class="column-half flex-form">
               <div>
@@ -70,7 +70,7 @@
           </div>
           <div class="row">
             <div class="column-full flex-button">
-              <button class="save" type="submit">Save</button>
+              <button type="submit">Save</button>
             </div>
           </div>
         </form>
@@ -82,12 +82,50 @@
         <div class="column-full flex-entry">
           <h1>Entries</h1>
           <div class="align">
-            <a class="new" href="#" dataview="create-entry">New</a>
+            <a class="new" href="#">New</a>
           </div>
         </div>
       </div>
       <div class="view hidden" data-view="create-entry">
-
+        <div class="column-full">
+          <h1>New Entry</h1>
+        </div>
+        <form class="two">
+          <div class="row">
+            <div class="column-half">
+              <img class="image-one entry" src="images/placeholder-image-square.jpg" alt="Placeholder Image">
+            </div>
+            <div class="column-half flex-entry-form">
+              <div>
+                <label for="image-url">Image URL</label>
+              </div>
+              <div>
+                <input required name="imageUrl" type="text" id="image-url">
+              </div>
+              <div>
+                <label for="title">Title</label>
+              </div>
+              <div>
+                <input required name="title" type="text" id="title">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <div class="padding">
+                <label for="notes">Notes</label>
+              </div>
+              <div>
+                <textarea required rows="5" name="notes" id="notes"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full flex-button">
+              <button type="submit">Save</button>
+            </div>
+          </div>
+        </form>
       </div>
     </main>
   </div>
