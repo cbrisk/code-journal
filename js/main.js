@@ -148,7 +148,9 @@ document.addEventListener('click', function (event) {
   }
   if (event.target.matches('a.edit')) {
     viewSwapping('edit-profile');
-  } else if (event.target.matches('a.link') && data.profile.username !== '') {
+  } else if (event.target.matches('a.link.prof') && data.profile.username !== '') {
     viewSwapping('profile');
+  } else if (event.target.matches('a.link.entry') && data.profile.username !== '') {
+    viewSwapping('entries');
   }
 });

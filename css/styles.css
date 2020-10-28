@@ -47,7 +47,8 @@ p {
 }
 
 button,
-a.edit {
+a.edit,
+a.new {
   padding: 8px 12px;
   margin: 12px 0;
   background-color: #9c1c20;
@@ -57,7 +58,8 @@ a.edit {
 }
 
 button:hover,
-a.edit:hover {
+a.edit:hover,
+a.new:hover {
   cursor: pointer;
 }
 
@@ -79,4 +81,14 @@ a.edit:hover {
 
 .padding {
   padding: 8px 0;
+}
+
+.flex-entry {
+  display: flex;
+  justify-content: space-between;
+}
+
+.align {
+  display: flex;
+  align-items: center;
 }
