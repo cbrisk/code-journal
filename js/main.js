@@ -97,11 +97,8 @@ function profileRender(data) {
   var $edit = document.createElement('a');
   $edit.setAttribute('href', '#');
   $edit.setAttribute('dataview', 'edit-profile');
-  var $editButton = document.createElement('button');
-  $editButton.setAttribute('type', 'submit');
-  $editButton.className = 'edit';
-  $editButton.textContent = 'Edit';
-  $edit.appendChild($editButton);
+  $edit.className = 'edit';
+  $edit.textContent = 'Edit';
   $divHalf2.appendChild($edit);
 
   $row.appendChild($divHalf2);
@@ -146,14 +143,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 document.addEventListener('click', function (event) {
-  if (event.target.matches('button.edit')) {
-    viewSwapping('edit-profile');
+  if (event.target.tagName !== 'A') {
+    return;
   }
-});
-
-var $h3 = document.querySelector('a > h3');
-$h3.addEventListener('click', function (event) {
-  if (data.profile.username !== '') {
+  if (event.target.matches('a.edit')) {
+    viewSwapping('edit-profile');
+  } else if (event.target.matches('a.link') && data.profile.username !== '') {
     viewSwapping('profile');
   }
 });
