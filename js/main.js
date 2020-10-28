@@ -146,11 +146,11 @@ document.addEventListener('click', function (event) {
   if (event.target.tagName !== 'A') {
     return;
   }
-  if (event.target.matches('a.edit')) {
+  if (event.target.matches('a.edit') || data.profile.username === '') {
     viewSwapping('edit-profile');
-  } else if (event.target.matches('a.link.prof') && data.profile.username !== '') {
+  } else if (event.target.matches('a.link.prof')) {
     viewSwapping('profile');
-  } else if (event.target.matches('a.link.entry') && data.profile.username !== '') {
+  } else if (event.target.matches('a.link.entry')) {
     viewSwapping('entries');
   } else if (event.target.matches('a.new')) {
     viewSwapping('create-entry');
