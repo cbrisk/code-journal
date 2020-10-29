@@ -25,28 +25,28 @@ window.addEventListener('beforeunload', function (event) {
 });
 
 function profileRender(data) {
-/* <div>
-    <div class="column-full">
-      <h1>data.profile.fullName</h1>
-    </div>
-    <div class="row">
-      <div class="column-half">
-        <i class="fas fa-user"></i>
+  /* <div>
+      <div class="column-full">
+        <h1>data.profile.fullName</h1>
       </div>
-      <div class="column-half">
-        <div class="flex">
+      <div class="row">
+        <div class="column-half">
           <i class="fas fa-user"></i>
-          <h4>data.profile.username</h4>
         </div>
-        <div class="flex">
-          <img class="image-two" src="https://www.clipartkey.com/mpngs/m/179-1791285_little-location-icon.png" alt="Location icon">
-          <h4>data.profile.location</h4>
+        <div class="column-half">
+          <div class="flex">
+            <i class="fas fa-user"></i>
+            <h4>data.profile.username</h4>
+          </div>
+          <div class="flex">
+            <img class="image-two" src="https://www.clipartkey.com/mpngs/m/179-1791285_little-location-icon.png" alt="Location icon">
+            <h4>data.profile.location</h4>
+          </div>
+          <p>data.profile.bio</p>
+          <a href="#" data-view="edit-profile"><button type="submit">Edit</button></a>
         </div>
-        <p>data.profile.bio</p>
-        <a href="#" data-view="edit-profile"><button type="submit">Edit</button></a>
       </div>
-    </div>
-  </div> */
+    </div> */
   var $container = document.createElement('div');
   var $divFull = document.createElement('div');
   $divFull.setAttribute('class', 'column-full');
@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
   } else {
     viewSwapping('profile');
   }
+  var $ol = document.querySelector('ol');
+  for (var i = 0; i < data.entries.length; i++) {
+    $ol.prepend(renderEntry(data.entries[i]));
+  }
 });
 
 document.addEventListener('click', function (event) {
@@ -176,3 +180,49 @@ $formEntry.addEventListener('submit', function (event) {
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   viewSwapping('entries');
 });
+
+function renderEntry(entry) {
+  /* <li>
+      <div class="row">
+        <div class="column-half">
+          <img class="image-one" src="https://www.poftut.com/wp-content/uploads/2020/03/image-118.png" alt="Server Farm">
+        </div>
+        <div class="column-half">
+          <h1>Server Farm</h1>
+          <h5>I have always found this concept of server farms really interesting! Amazon and other large companies are
+            constantly expanding their capabilities.</h5>
+        </div>
+      </div>
+    </li>
+  */
+  var $li = document.createElement('li');
+  var $listRow = document.createElement('div');
+  $listRow.setAttribute('class', 'row');
+
+  var $divHalf3 = document.createElement('div');
+  $divHalf3.setAttribute('class', 'column-half');
+
+  var $listImage = document.createElement('img');
+  $listImage.setAttribute('class', 'image-one');
+  $listImage.setAttribute('src', entry.imageUrl);
+  $listImage.setAttribute('alt', entry.title);
+  $divHalf3.appendChild($listImage);
+
+  var $divHalf4 = document.createElement('div');
+  $divHalf4.setAttribute('class', 'column-half');
+
+  var $h1List = document.createElement('h1');
+  $h1List.textContent = entry.title;
+
+  var $h5List = document.createElement('h5');
+  $h5List.textContent = entry.notes;
+
+  $divHalf4.appendChild($h1List);
+  $divHalf4.appendChild($h5List);
+
+  $listRow.appendChild($divHalf3);
+  $listRow.appendChild($divHalf4);
+  $li.appendChild($listRow);
+
+  return $li;
+}
