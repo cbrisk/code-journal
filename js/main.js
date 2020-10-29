@@ -118,13 +118,18 @@ function viewSwapping(dataView) {
   if (dataView === 'profile') {
     $views[1].innerHTML = '';
     $views[1].appendChild(profileRender(data));
-  } else {
+  } else if (dataView === 'edit-profile') {
     $form.elements.avatarUrl.value = data.profile.avatarUrl;
     $form.elements.username.value = data.profile.username;
     $form.elements.fullName.value = data.profile.fullName;
     $form.elements.location.value = data.profile.location;
     $form.elements.bio.value = data.profile.bio;
     $image.setAttribute('src', $form.elements.avatarUrl.value);
+  } else if (dataView === 'entries') {
+    var $ol = document.querySelector('ol');
+    for (var i = 0; i < data.entries.length; i++) {
+      $ol.prepend(renderEntry(data.entries[i]));
+    }
   }
   data.view = dataView;
 }
@@ -185,12 +190,11 @@ function renderEntry(entry) {
   /* <li>
       <div class="row">
         <div class="column-half">
-          <img class="image-one" src="https://www.poftut.com/wp-content/uploads/2020/03/image-118.png" alt="Server Farm">
+          <img class="image-one" src=entry.imageUrl alt="entry.title">
         </div>
         <div class="column-half">
-          <h1>Server Farm</h1>
-          <h5>I have always found this concept of server farms really interesting! Amazon and other large companies are
-            constantly expanding their capabilities.</h5>
+          <h1>entry.title</h1>
+          <h5>entry.notes</h5>
         </div>
       </div>
     </li>
