@@ -125,12 +125,6 @@ function viewSwapping(dataView) {
     $form.elements.location.value = data.profile.location;
     $form.elements.bio.value = data.profile.bio;
     $image.setAttribute('src', $form.elements.avatarUrl.value);
-  } else if (dataView === 'entries') {
-    var $ol = document.querySelector('ol');
-    $ol.innerHTML = '';
-    for (var i = 0; i < data.entries.length; i++) {
-      $ol.prepend(renderEntry(data.entries[i]));
-    }
   }
   data.view = dataView;
 }
@@ -145,6 +139,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     viewSwapping('edit-profile');
   } else {
     viewSwapping('profile');
+  }
+  $ol.innerHTML = '';
+  for (var i = 0; i < data.entries.length; i++) {
+    $ol.prepend(renderEntry(data.entries[i]));
   }
 });
 
@@ -166,6 +164,7 @@ document.addEventListener('click', function (event) {
 var $formEntry = document.querySelector('form.two');
 var $imageUrl = document.querySelector('#image-url');
 var $entryImage = document.querySelector('img.entry');
+var $ol = document.querySelector('ol');
 
 $imageUrl.addEventListener('input', function (event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -180,6 +179,7 @@ $formEntry.addEventListener('submit', function (event) {
   });
   $formEntry.reset();
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $ol.prepend(renderEntry(data.entries[data.entries.length - 1]));
   viewSwapping('entries');
 });
 
