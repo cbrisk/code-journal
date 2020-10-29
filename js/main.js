@@ -146,8 +146,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 });
 
+var $parent = null;
 document.addEventListener('click', function (event) {
-  if (event.target.tagName !== 'A') {
+  var $background = document.querySelector('div.background');
+
+  if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
     return;
   }
   if (event.target.matches('a.edit') || data.profile.username === '') {
@@ -158,6 +161,21 @@ document.addEventListener('click', function (event) {
     viewSwapping('entries');
   } else if (event.target.matches('a.new')) {
     viewSwapping('create-entry');
+  } else if (event.target.matches('button.remove')) {
+    $background.classList.remove('hidden');
+    $parent = event.target.closest('li');
+  } else if (event.target.matches('button.yes')) {
+    $background.classList.add('hidden');
+    var $listItems = document.querySelectorAll('li');
+    for (var j = 0; j < $listItems.length; j++) {
+      if ($listItems[j] === $parent) {
+        j++;
+        data.entries.splice(data.entries.length - j, 1);
+      }
+    }
+    $parent.remove();
+  } else if (event.target.matches('button.no')) {
+    $background.classList.add('hidden');
   }
 });
 
@@ -218,8 +236,13 @@ function renderEntry(entry) {
   var $h5List = document.createElement('h5');
   $h5List.textContent = entry.notes;
 
+  var $delete = document.createElement('button');
+  $delete.setAttribute('class', 'remove');
+  $delete.textContent = 'Delete';
+
   $divHalf4.appendChild($h1List);
   $divHalf4.appendChild($h5List);
+  $divHalf4.appendChild($delete);
 
   $listRow.appendChild($divHalf3);
   $listRow.appendChild($divHalf4);
