@@ -145,10 +145,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
   } else {
     viewSwapping('profile');
   }
-  var $ol = document.querySelector('ol');
-  for (var i = 0; i < data.entries.length; i++) {
-    $ol.prepend(renderEntry(data.entries[i]));
-  }
+  // var $ol = document.querySelector('ol');
+  // for (var i = 0; i < data.entries.length; i++) {
+  // $ol.prepend(renderEntry(data.entries[i]));
+  // }
 });
 
 document.addEventListener('click', function (event) {
