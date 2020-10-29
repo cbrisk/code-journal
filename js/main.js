@@ -127,6 +127,7 @@ function viewSwapping(dataView) {
     $image.setAttribute('src', $form.elements.avatarUrl.value);
   } else if (dataView === 'entries') {
     var $ol = document.querySelector('ol');
+    $ol.innerHTML = '';
     for (var i = 0; i < data.entries.length; i++) {
       $ol.prepend(renderEntry(data.entries[i]));
     }
@@ -145,10 +146,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   } else {
     viewSwapping('profile');
   }
-  // var $ol = document.querySelector('ol');
-  // for (var i = 0; i < data.entries.length; i++) {
-  // $ol.prepend(renderEntry(data.entries[i]));
-  // }
 });
 
 document.addEventListener('click', function (event) {
