@@ -25,28 +25,28 @@ window.addEventListener('beforeunload', function (event) {
 });
 
 function profileRender(data) {
-/* <div>
-    <div class="column-full">
-      <h1>data.profile.fullName</h1>
-    </div>
-    <div class="row">
-      <div class="column-half">
-        <i class="fas fa-user"></i>
+  /* <div>
+      <div class="column-full">
+        <h1>data.profile.fullName</h1>
       </div>
-      <div class="column-half">
-        <div class="flex">
+      <div class="row">
+        <div class="column-half">
           <i class="fas fa-user"></i>
-          <h4>data.profile.username</h4>
         </div>
-        <div class="flex">
-          <img class="image-two" src="https://www.clipartkey.com/mpngs/m/179-1791285_little-location-icon.png" alt="Location icon">
-          <h4>data.profile.location</h4>
+        <div class="column-half">
+          <div class="flex">
+            <i class="fas fa-user"></i>
+            <h4>data.profile.username</h4>
+          </div>
+          <div class="flex">
+            <img class="image-two" src="https://www.clipartkey.com/mpngs/m/179-1791285_little-location-icon.png" alt="Location icon">
+            <h4>data.profile.location</h4>
+          </div>
+          <p>data.profile.bio</p>
+          <a href="#" data-view="edit-profile"><button type="submit">Edit</button></a>
         </div>
-        <p>data.profile.bio</p>
-        <a href="#" data-view="edit-profile"><button type="submit">Edit</button></a>
       </div>
-    </div>
-  </div> */
+    </div> */
   var $container = document.createElement('div');
   var $divFull = document.createElement('div');
   $divFull.setAttribute('class', 'column-full');
@@ -118,7 +118,7 @@ function viewSwapping(dataView) {
   if (dataView === 'profile') {
     $views[1].innerHTML = '';
     $views[1].appendChild(profileRender(data));
-  } else {
+  } else if (dataView === 'edit-profile') {
     $form.elements.avatarUrl.value = data.profile.avatarUrl;
     $form.elements.username.value = data.profile.username;
     $form.elements.fullName.value = data.profile.fullName;
@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
   } else {
     viewSwapping('profile');
   }
+  $ol.innerHTML = '';
+  for (var i = 0; i < data.entries.length; i++) {
+    $ol.prepend(renderEntry(data.entries[i]));
+  }
 });
 
 document.addEventListener('click', function (event) {
@@ -160,6 +164,7 @@ document.addEventListener('click', function (event) {
 var $formEntry = document.querySelector('form.two');
 var $imageUrl = document.querySelector('#image-url');
 var $entryImage = document.querySelector('img.entry');
+var $ol = document.querySelector('ol');
 
 $imageUrl.addEventListener('input', function (event) {
   $entryImage.setAttribute('src', event.target.value);
@@ -174,5 +179,51 @@ $formEntry.addEventListener('submit', function (event) {
   });
   $formEntry.reset();
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $ol.prepend(renderEntry(data.entries[data.entries.length - 1]));
   viewSwapping('entries');
 });
+
+function renderEntry(entry) {
+  /* <li>
+      <div class="row">
+        <div class="column-half">
+          <img class="image-one" src=entry.imageUrl alt="entry.title">
+        </div>
+        <div class="column-half">
+          <h1>entry.title</h1>
+          <h5>entry.notes</h5>
+        </div>
+      </div>
+    </li>
+  */
+  var $li = document.createElement('li');
+  var $listRow = document.createElement('div');
+  $listRow.setAttribute('class', 'row');
+
+  var $divHalf3 = document.createElement('div');
+  $divHalf3.setAttribute('class', 'column-half');
+
+  var $listImage = document.createElement('img');
+  $listImage.setAttribute('class', 'image-one');
+  $listImage.setAttribute('src', entry.imageUrl);
+  $listImage.setAttribute('alt', entry.title);
+  $divHalf3.appendChild($listImage);
+
+  var $divHalf4 = document.createElement('div');
+  $divHalf4.setAttribute('class', 'column-half');
+
+  var $h1List = document.createElement('h1');
+  $h1List.textContent = entry.title;
+
+  var $h5List = document.createElement('h5');
+  $h5List.textContent = entry.notes;
+
+  $divHalf4.appendChild($h1List);
+  $divHalf4.appendChild($h5List);
+
+  $listRow.appendChild($divHalf3);
+  $listRow.appendChild($divHalf4);
+  $li.appendChild($listRow);
+
+  return $li;
+}

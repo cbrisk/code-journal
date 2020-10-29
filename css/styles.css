@@ -46,6 +46,18 @@ p {
   margin-bottom: 24px;
 }
 
+ol {
+  list-style: none;
+}
+
+li {
+  padding-bottom: 40px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
 button,
 a.edit,
 a.new {
