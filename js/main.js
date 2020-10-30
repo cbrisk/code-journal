@@ -150,10 +150,10 @@ var $parent = null;
 document.addEventListener('click', function (event) {
   var $background = document.querySelector('div.background');
 
-  if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
+  if ((event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') || data.profile.username === '') {
     return;
   }
-  if (event.target.matches('a.edit') || data.profile.username === '') {
+  if (event.target.matches('a.edit')) {
     viewSwapping('edit-profile');
   } else if (event.target.matches('a.link.prof')) {
     viewSwapping('profile');
